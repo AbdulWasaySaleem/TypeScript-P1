@@ -1,24 +1,23 @@
-import './App.css'
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import FetchFact from './components/FetchFact'
-import Header from './Pages/Header'
+import FetchFact from './components/FetchFact';
+import Header from './Pages/Header';
 import WriteFact from './components/WriteFact';
 import WriteDetail from './components/WriteDetail';
-function App() {
 
+function App() {
   return (
     <>
-    <Router>
-    <Header/>
-      <Routes>
-        <Route path='/randomfact' element={<FetchFact/>}/>
-        <Route path='/writefact' element={<WriteFact/>}/>
-        <Route path='/yourfact/:id' element={<WriteDetail/>} />
-      </Routes>
-    </Router>
-      
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/randomfact" element={<FetchFact />} />
+          <Route path="/writefact" element={<WriteFact />} />
+          <Route path="/yourfact/:id/:save" element={<WriteDetail />} />
+        </Routes>
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

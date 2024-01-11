@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { IFacts, ISaved } from "../Models/IFacts";
 
 interface Istate {
@@ -60,10 +60,11 @@ const FetchFact: React.FC = () => {
         <p className="text-lg">
           <span className="font-semibold">Length:</span> {first.getFact.length}
         </p>
-      </div>
-      <button className="btn btn-primary fixed right-4" onClick={saveToTable}>
+        <button className="btn btn-primary m-3" onClick={saveToTable}>
         Save
       </button>
+      </div>
+    
 
       {/* down area of table */}
       <div className="flex justify-center h-auto">

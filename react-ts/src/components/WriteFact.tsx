@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IWrite, IwriteSave } from "../Models/IWrite";
+import { Link } from "react-router-dom";
 
 interface Istate {
   writeFact: IWrite;
@@ -37,7 +38,7 @@ const WriteFact: React.FC = () => {
       ...prevState,
       {
         savedYourFact: {
-          id: prevState.length + 1, // add.writeFact.id
+          id: prevState.length, // add.writeFact.id
           save: add.writeFact.add,
         },
       },
@@ -53,6 +54,7 @@ const WriteFact: React.FC = () => {
 
   return (
     <>
+      <h1 className="text-3xl font-bold m-4 text-center">Write Cat Facts</h1>
       <div className="flex justify-center m-20">
         <form className="w-50" onSubmit={handleSubmit}>
           <div className="mb-3 ">
@@ -66,13 +68,14 @@ const WriteFact: React.FC = () => {
               value={add.writeFact.add}
               onChange={handleChange}
             />
+              <button className="btn btn-primary mt-3 " onClick={saveData}>
+        Add
+      </button>
           </div>
         </form>
       </div>
 
-      <button className="btn btn-primary fixed right-4" onClick={saveData}>
-        Add
-      </button>
+    
 
       <div className="flex justify-center h-auto">
         <table className="table w-3/4 mt-8">
@@ -85,8 +88,10 @@ const WriteFact: React.FC = () => {
           <tbody>
             {save.map((savedFact, index) => (
               <tr key={index}>
-                <td className="py-2">{savedFact.savedYourFact.id}</td>
-                <td className="py-2">{savedFact.savedYourFact.save}</td>
+                 <Link to={`/yourfact/${savedFact.savedYourFact.id}/${savedFact.savedYourFact.save}`}>
+                  <td className="py-2">{savedFact.savedYourFact.id}</td>
+                  <td className="py-2">{savedFact.savedYourFact.save}</td>
+                </Link>
               </tr>
             ))}
           </tbody>
