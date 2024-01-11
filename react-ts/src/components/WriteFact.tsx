@@ -53,51 +53,58 @@ const WriteFact: React.FC = () => {
   };
 
   return (
-    <>
-      <h1 className="text-3xl font-bold m-4 text-center">Write Cat Facts</h1>
-      <div className="flex justify-center m-20">
-        <form className="w-50" onSubmit={handleSubmit}>
-          <div className="mb-3 ">
-            <label htmlFor="exampleInputEmail1" className="form-label">
-              Write Any Fact
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              name="add"
-              value={add.writeFact.add}
-              onChange={handleChange}
-            />
-              <button className="btn btn-primary mt-3 " onClick={saveData}>
-        Add
-      </button>
+<>
+  <h1 className="text-3xl font-bold m-4 text-center">Write Cat Facts</h1>
+  <div className="flex justify-center m-20">
+    <form className="w-1/2 bg-gray-100 p-6 rounded-lg shadow-md" onSubmit={handleSubmit}>
+      <div className="mb-4">
+        <label htmlFor="exampleInputEmail1" className="block text-gray-700 text-sm font-bold mb-2">
+          Write Any Fact
+        </label>
+        <input
+          type="text"
+          className="form-input w-full px-4 py-2 border rounded-md"
+          name="add"
+          value={add.writeFact.add}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="text-center">
+        <button className="btn btn-primary" onClick={saveData}>
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div className="flex justify-center h-auto">
+    <table className="table w-3/4 mt-8">
+      <thead style={{ height: "50px" }}>
+        <tr>
+          <div>
+          <th scope="col" className="sticky top-0 bg-gray-200 z-50 px-4 py-2">
+            id
+          </th>
+          <th scope="col" className="sticky top-0 bg-gray-200 z-50 px-4 py-2">
+            YourFacts
+          </th>
           </div>
-        </form>
-      </div>
-
-    
-
-      <div className="flex justify-center h-auto">
-        <table className="table w-3/4 mt-8">
-          <thead>
-            <tr>
-              <th scope="col">id</th>
-              <th scope="col">YourFacts</th>
-            </tr>
-          </thead>
-          <tbody>
-            {save.map((savedFact, index) => (
-              <tr key={index}>
-                 <Link to={`/yourfact/${savedFact.savedYourFact.id}/${savedFact.savedYourFact.save}`}>
-                  <td className="py-2">{savedFact.savedYourFact.id}</td>
-                  <td className="py-2">{savedFact.savedYourFact.save}</td>
-                </Link>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+          
+        </tr>
+      </thead>
+      <tbody>
+        {save.map((savedFact, index) => (
+          <tr key={index}>
+            <Link to={`/yourfact/${savedFact.savedYourFact.id}/${savedFact.savedYourFact.save}`}>
+              <td className="px-4 py-2">{savedFact.savedYourFact.id}</td>
+              <td className="px-4 py-2">{savedFact.savedYourFact.save}</td>
+            </Link>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</>
   );
 };
 

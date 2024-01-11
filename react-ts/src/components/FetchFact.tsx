@@ -48,45 +48,49 @@ const FetchFact: React.FC = () => {
   };
   return (
     <>
-      <div className="container mx-auto my-8 text-center">
-        <h1 className="text-3xl font-bold mb-4">Fetch Cat Facts</h1>
-        <button onClick={getFact} className="btn btn-primary">
-          Get Random Fact
-        </button>
-        <div className="my-4">
-          <p className="text-xl">Random Fact:</p>
-          <p className="text-lg font-semibold">{first.getFact.facts}</p>
-        </div>
-        <p className="text-lg">
-          <span className="font-semibold">Length:</span> {first.getFact.length}
-        </p>
-        <button className="btn btn-primary m-3" onClick={saveToTable}>
+    <div className="container mx-auto my-8 text-center w-1/2 bg-gray-100 p-6 rounded-lg shadow-md">
+      <h1 className="text-3xl font-bold mb-4">Fetch Cat Facts</h1>
+      <button onClick={getFact} className="btn btn-primary">
+        Get Random Fact
+      </button>
+      <div className="my-4">
+        <p className="text-xl">Random Fact:</p>
+        <p className="text-lg font-semibold">{first.getFact.facts}</p>
+      </div>
+      <p className="text-lg">
+        <span className="font-semibold">Length:</span> {first.getFact.length}
+      </p>
+      <button className="btn btn-primary m-3" onClick={saveToTable}>
         Save
       </button>
-      </div>
-    
-
-      {/* down area of table */}
-      <div className="flex justify-center h-auto">
-        <table className="table w-3/4 mt-8">
-          <thead>
-            <tr>
-              <th scope="col">Length</th>
-              <th scope="col">Facts</th>
+    </div>
+  
+    {/* down area of table */}
+    <div className="flex justify-center h-auto">
+      <table className="table w-3/4 mt-8">
+        <thead>
+          <tr>
+            <th scope="col" className="sticky top-0 bg-white z-50">
+              Length
+            </th>
+            <th scope="col" className="sticky top-0 bg-white z-50">
+              Facts
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {save.map((saved, index) => (
+            <tr key={index}>
+              {/* {console.log(saved.saveFact)} */}
+              <td className="py-2">{saved.saveFact.lengthID}</td>
+              <td className="py-2">{saved.saveFact.factsSave}</td>
             </tr>
-          </thead>
-          <tbody>
-            {save.map((saved, index) => (
-              <tr key={index}>
-            {/* {console.log(saved.saveFact)} */}
-                <td className="py-2">{saved.saveFact.lengthID}</td>
-                <td className="py-2">{saved.saveFact.factsSave}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </>
+  
   );
 };
 
