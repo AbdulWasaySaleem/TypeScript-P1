@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { IWrite } from "../Models/IWrite";
+import { IWrite, IwriteSave } from "../Models/IWrite";
 
 interface Istate {
   writeFact: IWrite;
 }
+interface Isave {
+  savedYourFact: IwriteSave;
+}
+
 const WriteFact: React.FC = () => {
-  //initializing default state
   const [add, setAdd] = useState<Istate>({
     writeFact: {
       id: 0,
@@ -13,9 +16,9 @@ const WriteFact: React.FC = () => {
     },
   });
 
-  //handeling chnage
+  const [save, setSave] = useState<Isave[]>([]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log(e.target.value);
     setAdd({
       writeFact: {
         ...add.writeFact,
@@ -23,10 +26,29 @@ const WriteFact: React.FC = () => {
       },
     });
   };
-  //handiling clock
+  //just to prevent default behavior n displaying data
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(add.writeFact);
+  };
+
+  const saveData = () => {
+    setSave((prevState) => [
+      ...prevState,
+      {
+        savedYourFact: {
+          id: prevState.length + 1, // add.writeFact.id
+          save: add.writeFact.add,
+        },
+      },
+    ]);
+    //to set it empty
+    setAdd({
+      writeFact: {
+        id: 0,
+        add: "",
+      },
+    });
   };
 
   return (
@@ -44,14 +66,31 @@ const WriteFact: React.FC = () => {
               value={add.writeFact.add}
               onChange={handleChange}
             />
-            <button className="btn btn-primary">Add</button>
           </div>
         </form>
       </div>
-      <div>
-        <p>Display inputed data</p>
-        <div>{JSON.stringify(add.writeFact)}</div>
-        <div>add: {add.writeFact.add}</div>
+
+      <button className="btn btn-primary fixed right-4" onClick={saveData}>
+        Add
+      </button>
+
+      <div className="flex justify-center h-auto">
+        <table className="table w-3/4 mt-8">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">YourFacts</th>
+            </tr>
+          </thead>
+          <tbody>
+            {save.map((savedFact, index) => (
+              <tr key={index}>
+                <td className="py-2">{savedFact.savedYourFact.id}</td>
+                <td className="py-2">{savedFact.savedYourFact.save}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

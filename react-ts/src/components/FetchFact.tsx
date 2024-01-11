@@ -17,7 +17,7 @@ const FetchFact: React.FC = () => {
       facts: "",
     },
   });
-  //Saving btn
+  //Saving states
   const [save, setSave] = useState<Isave[]>([]);
 
   //getting fact

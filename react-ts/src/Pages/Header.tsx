@@ -26,6 +26,12 @@ const Header:React.FC = () => {
                 <Link to={"/writefact"} className="nav-link active" aria-current="page" >
                   Write Fact
                 </Link>
+               
+              </li>
+              <li className="nav-item">
+              <Link to={"/yourfact"} className="nav-link active" aria-current="page" >
+                Details
+              </Link>
               </li>
             </ul>
           {/* </div> */}
